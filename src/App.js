@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import {useContext} from "react";
+import About from "./components/about";
+import Header from "./components/header";
+import Login from "./components/loginPage";
+import {ControlViewsContext} from "./context/controlViews";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  const {views} = useContext(ControlViewsContext);
+  const {view} = views;
+
+  if(view === "about"){
+    return(
+      <div className="App">
+        <Header/>
+        <About/>
+      </div>
+    )
+  } else if(view === "home"){
+    return (
+      <div className="App">
+        <Header/>
+        <Login/>
+      </div>
+    );
+  }
+
+  
 }
 
 export default App;
