@@ -9,7 +9,8 @@ const ControlViewsContextProvider = ({ children }) => {
     });
 
     //Function onClick for Nav Bar
-    const changeView = () => {
+    const changeView = (event) => {
+        event.preventDefault();
         setViews({
             ...views,
             view: "about"
