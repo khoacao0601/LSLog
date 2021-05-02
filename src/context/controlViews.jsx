@@ -9,7 +9,15 @@ const ControlViewsContextProvider = ({ children }) => {
     });
 
     //Function onClick for Nav Bar
-    const changeView = (event) => {
+    const viewHome = (event) => {
+        event.preventDefault();
+        setViews({
+            ...views,
+            view: "home"
+        })
+    }
+
+    const viewAbout = (event) => {
         event.preventDefault();
         setViews({
             ...views,
@@ -17,10 +25,31 @@ const ControlViewsContextProvider = ({ children }) => {
         })
     }
 
+    const viewContact= (event) => {
+        event.preventDefault();
+        setViews({
+            ...views,
+            view: "contact"
+        })
+    }
+
+    const viewHelp = (event) => {
+        event.preventDefault();
+        setViews({
+            ...views,
+            view: "help"
+        })
+    }
+
+    
+
     //ContextData
     const viewsDataContext = {
         views,
-        changeView
+        viewAbout,
+        viewHome,
+        viewContact,
+        viewHelp
     };
 
     //Return Provider

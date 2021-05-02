@@ -6,7 +6,7 @@ import LSLLogo from '../images/LSL Logo.png';
 
 const Header = () => {
 
-    const {changeView} = useContext(ControlViewsContext)
+    const {viewAbout, viewHome, viewContact, viewHelp} = useContext(ControlViewsContext);
 
 
     return(
@@ -18,10 +18,10 @@ const Header = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-                <a className="nav-item nav-link active" href="Home">Home <span className="sr-only">(current)</span></a>
-                <a className="nav-item nav-link" href="About" onClick={changeView}>About</a>
-                <a className="nav-item nav-link" href="Contact">Contact</a>
-                <a className="nav-item nav-link" href="Help">Help</a>
+                <a className="nav-item nav-link active" href="Home" onClick={viewHome}>Home <span className="sr-only">(current)</span></a>
+                <a className="nav-item nav-link" href="About" onClick={viewAbout}>About</a>
+                <a className="nav-item nav-link" href="Contact" onClick={viewContact}>Contact</a>
+                <a className="nav-item nav-link" href="Help" onClick={viewHelp}>Help</a>
             </div>
         </div>
     </nav>

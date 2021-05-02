@@ -1,6 +1,32 @@
 import React from 'react';
+import {useState, useEffect} from 'react';
 
 const Login = () => {
+
+    const api_key = "3c75208d866c53ae123789258ee3d13d";
+
+    const cityName = "Dallas";
+
+    const api_url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${api_key}`;
+
+    useEffect(() => {
+        async function fetchPostList(){
+            try {
+                const requestUrl = api_url;
+                const response = await fetch(requestUrl);
+                const responseJSON = await response.json();
+                
+                console.log(responseJSON);
+            } catch (error) {
+                console.log('Failed to Fetch', error);
+            } 
+        }
+
+        fetchPostList();
+    }, [ ]);
+
+
+
     return(
         <div className="login-form w-25 mx-auto">
             <form>
