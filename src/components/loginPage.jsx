@@ -7,7 +7,7 @@ const Login = () => {
 
     const cityName = "Dallas";
 
-    const api_url = `api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${api_key}`;
+    const api_url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${api_key}`;
 
     useEffect(() => {
         async function fetchPostList(){
