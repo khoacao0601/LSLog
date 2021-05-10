@@ -4,6 +4,7 @@ import Header from "./components/header";
 import Login from "./components/loginPage";
 import Contact from "./components/contact";
 import Help from "./components/help";
+import Welcome from "./components/welcome";
 import {ControlViewsContext} from "./context/controlViews";
 
 
@@ -40,6 +41,13 @@ function App() {
         <Help/>
       </div>
     );
+  } else if(view === "welcome"){
+    return (
+      <div className="App">
+        <Header/>
+        <Welcome/>
+      </div>
+    )
   }
 
   

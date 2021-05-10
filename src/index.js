@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import ControlUsersContextProvider from './context/controlUsers';
 import ControlViewsContextProvider from './context/controlViews';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ControlViewsContextProvider>
-      <App />
-    </ControlViewsContextProvider>
+    <ControlUsersContextProvider>
+        <ControlViewsContextProvider>
+          <App />
+        </ControlViewsContextProvider>
+      </ControlUsersContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

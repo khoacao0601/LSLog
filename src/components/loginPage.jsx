@@ -1,41 +1,75 @@
-import React from 'react';
-import {useState, useEffect} from 'react';
+import React, {useContext, useState} from 'react';
+import {useEffect} from 'react';
+import {ControlUsersContext} from '../context/controlUsers';
+import {ControlViewsContext} from '../context/controlViews';
+
 
 const Login = () => {
 
-    const api_key = "3c75208d866c53ae123789258ee3d13d";
+    const [inputUserName, setInputUserName] = useState('');
+    const [userName, setUserName] = useState([]);
+    const [views, setView] =useState('');
 
-    const cityName = "Dallas";
+    const {getUsersValue} = useContext(ControlUsersContext);
+    const {viewValueWelcome} = useContext(ControlViewsContext);
+    //console.log(viewsValueSet);
+    
 
-    const api_url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${api_key}`;
+    const api_url = `http://18.188.15.76:8110/uaa/users`;
 
     useEffect(() => {
-        async function fetchPostList(){
-            try {
-                const requestUrl = api_url;
-                const response = await fetch(requestUrl);
-                const responseJSON = await response.json();
-                
-                console.log(responseJSON);
-            } catch (error) {
-                console.log('Failed to Fetch', error);
+            async function fetchPostList(){
+                try {
+                    const requestUrl = api_url;
+                    const response = await fetch(requestUrl);
+                    const responseJSON = await response.json();
+                    
+                    console.log(responseJSON);
+                    getUsersValue(responseJSON);
+
+                    //Clear data to get Username Only
+                    let newUsersName = [];
+                    for(let i = 0; i < responseJSON.length; i++){
+                        newUsersName.push(responseJSON[i].username)
+                     }
+                     setUserName([...userName, newUsersName]);
+                     console.log(newUsersName);
+
+                } catch (error) {
+                    console.log('Failed to Fetch', error);
+                } 
+            }
+            fetchPostList();
+        
+    }, []);
+
+    const getInputUserName = (event) => {
+        setInputUserName(event.target.value);
+    }   
+
+    const checkUserName = (event) => {
+        //debugger;
+        event.preventDefault();
+        console.log(userName[0]);
+        for(let i = 0; i < userName[0].length; i++){
+            if(userName[0][i] === inputUserName){
+               viewValueWelcome('welcome')   
             } 
         }
-
-        fetchPostList();
-    }, [ ]);
-
-
+    }
 
     return(
         <div className="login-form w-25 mx-auto">
-            <form>
+            <form onSubmit={checkUserName}>
                 <h2 className="text-center">Log in</h2>       
                 <div className="form-group">
-                    <input type="text" className="form-control" placeholder="Username" required="required" />
+                    <input type="text" className="form-control" placeholder="Username" required="required" 
+                    value={inputUserName}
+                    onChange={getInputUserName}
+                    />
                 </div>
                 <div className="form-group">
-                    <input type="password" className="form-control" placeholder="Password" required="required" />
+                    <input type="password" className="form-control" placeholder="Password" />
                 </div>
                 <div className="form-group">
                     <button type="submit" className="btn btn-primary btn-block">Log in</button>
