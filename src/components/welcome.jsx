@@ -9,8 +9,8 @@ const Welcome = () => {
 
     const {users} = useContext(ControlUsersContext);
     const {userIn} = useContext(ControlUserLoginContext);
-    console.log(userIn);
-    console.log(users);
+    //console.log(userIn);
+    //console.log(users);
 
     useEffect(() => {
         function setInfo(){
@@ -23,8 +23,6 @@ const Welcome = () => {
             setInfo();
         }
     )
-
-    
 
     return (
         <div className="w-50 mx-auto">

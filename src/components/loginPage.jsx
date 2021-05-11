@@ -35,7 +35,7 @@ const Login = () => {
                         newUsersName.push(responseJSON[i].username)
                      }
                      setUserName([...userName, newUsersName]);
-                     console.log(newUsersName);
+                     //console.log(newUsersName);
 
                 } catch (error) {
                     console.log('Failed to Fetch', error);
@@ -52,7 +52,7 @@ const Login = () => {
     const checkUserName = (event) => {
         //debugger;
         event.preventDefault();
-        console.log(userName);
+        //console.log(userName);
         for(let i = 0; i < userName[0].length; i++){
             if(userName[0][i] === inputUserName){
                 setUserInfoIn(userName[0][i]);

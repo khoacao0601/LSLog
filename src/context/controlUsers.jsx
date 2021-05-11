@@ -16,7 +16,7 @@ const ControlUsersContextProvider = ({ children }) => {
 
     const getUsersName = (users) => {
         //debugger;
-        console.log(users);
+        //console.log(users);
     }
 
     const usersDataContext = {
