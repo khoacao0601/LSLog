@@ -9,6 +9,7 @@ const Login = () => {
 
     const [inputUserName, setInputUserName] = useState('');
     const [userName, setUserName] = useState([]);
+    const [userStatus, setUserStatus] = useState('');
 
     const {getUsersValue} = useContext(ControlUsersContext);
     const {viewValueWelcome} = useContext(ControlViewsContext);
@@ -56,7 +57,10 @@ const Login = () => {
             if(userName[0][i] === inputUserName){
                 setUserInfoIn(userName[0][i]);
                 viewValueWelcome('welcome');  
-            } 
+            } else {
+                setUserStatus("Username is not available");
+            }
+
         }
     }
 
@@ -73,6 +77,7 @@ const Login = () => {
                 <div className="form-group">
                     <input type="password" className="form-control" placeholder="Password" />
                 </div>
+                <p style={{color:'red'}}>{userStatus}</p>
                 <div className="form-group">
                     <button type="submit" className="btn btn-primary btn-block">Log in</button>
                 </div>
