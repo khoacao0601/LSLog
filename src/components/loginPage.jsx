@@ -2,16 +2,17 @@ import React, {useContext, useState} from 'react';
 import {useEffect} from 'react';
 import {ControlUsersContext} from '../context/controlUsers';
 import {ControlViewsContext} from '../context/controlViews';
+import {ControlUserLoginContext} from '../context/controlUserLogIn';
 
 
 const Login = () => {
 
     const [inputUserName, setInputUserName] = useState('');
     const [userName, setUserName] = useState([]);
-    const [views, setView] =useState('');
 
     const {getUsersValue} = useContext(ControlUsersContext);
     const {viewValueWelcome} = useContext(ControlViewsContext);
+    const {setUserInfoIn} = useContext(ControlUserLoginContext);
     //console.log(viewsValueSet);
     
 
@@ -24,7 +25,7 @@ const Login = () => {
                     const response = await fetch(requestUrl);
                     const responseJSON = await response.json();
                     
-                    console.log(responseJSON);
+                    //console.log(responseJSON);
                     getUsersValue(responseJSON);
 
                     //Clear data to get Username Only
@@ -50,10 +51,11 @@ const Login = () => {
     const checkUserName = (event) => {
         //debugger;
         event.preventDefault();
-        console.log(userName[0]);
+        console.log(userName);
         for(let i = 0; i < userName[0].length; i++){
             if(userName[0][i] === inputUserName){
-               viewValueWelcome('welcome')   
+                setUserInfoIn(userName[0][i]);
+                viewValueWelcome('welcome');  
             } 
         }
     }

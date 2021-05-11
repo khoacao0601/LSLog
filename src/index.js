@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import ControlUsersContextProvider from './context/controlUsers';
 import ControlViewsContextProvider from './context/controlViews';
+import ControlUserLoginContextProvider from './context/controlUserLogIn';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <ControlUsersContextProvider>
         <ControlViewsContextProvider>
-          <App />
+         <ControlUserLoginContextProvider>
+            <App />
+          </ControlUserLoginContextProvider> 
         </ControlViewsContextProvider>
       </ControlUsersContextProvider>
   </React.StrictMode>,
