@@ -23,7 +23,11 @@ const Login = () => {
             async function fetchPostList(){
                 try {
                     const requestUrl = api_url;
-                    const response = await fetch(requestUrl);
+                    const response = await fetch(requestUrl,{ 
+                        mode: "no-cors"
+                    });
+                    console.log(response);
+                
                     const responseJSON = await response.json();
                     
                     //console.log(responseJSON);
@@ -43,7 +47,7 @@ const Login = () => {
             }
             fetchPostList();
         
-    }, []);
+    }, [api_url, getUsersValue, userName]);
 
     const getInputUserName = (event) => {
         setInputUserName(event.target.value);
