@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import {useEffect} from 'react';
 import {ControlUsersContext} from '../context/controlUsers';
 import {ControlViewsContext} from '../context/controlViews';
-import {ControlUserLoginContext} from '../context/controlUserLogIn';
+
 
 
 const Login = () => {
@@ -11,22 +11,20 @@ const Login = () => {
     const [userName, setUserName] = useState([]);
     const [userStatus, setUserStatus] = useState('');
 
-    const {getUsersValue} = useContext(ControlUsersContext);
+    const {getUsersValue, userFilter} = useContext(ControlUsersContext);
     const {viewValueWelcome} = useContext(ControlViewsContext);
-    const {setUserInfoIn} = useContext(ControlUserLoginContext);
+  
     //console.log(viewsValueSet);
     
 
-    const api_url = `http://18.188.15.76:8110/uaa/users`;
+    const api_url = `http://18.222.78.10:8110/uaa/users`;
 
     useEffect(() => {
             async function fetchPostList(){
                 try {
                     const requestUrl = api_url;
-                    const response = await fetch(requestUrl,{ 
-                        mode: "no-cors"
-                    });
-                    console.log(response);
+                    const response = await fetch(requestUrl);
+                    //console.log(response);
                 
                     const responseJSON = await response.json();
                     
@@ -47,7 +45,7 @@ const Login = () => {
             }
             fetchPostList();
         
-    }, [api_url, getUsersValue, userName]);
+    }, []);
 
     const getInputUserName = (event) => {
         setInputUserName(event.target.value);
@@ -59,7 +57,7 @@ const Login = () => {
         //console.log(userName);
         for(let i = 0; i < userName[0].length; i++){
             if(userName[0][i] === inputUserName){
-                setUserInfoIn(userName[0][i]);
+                userFilter(userName[0][i]);
                 viewValueWelcome('welcome');  
             } else {
                 setUserStatus("Username is not available");

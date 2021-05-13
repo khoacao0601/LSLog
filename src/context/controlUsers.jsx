@@ -6,25 +6,27 @@ export const ControlUsersContext = createContext();
 const ControlUsersContextProvider = ({ children }) => {
 
     const [users, setUsers] = useState({});
-
+    const [userInfo, setUserInfo] = useState({});
 
     const getUsersValue = (value) => {
-        //console.log(value);
+        console.log(value);
         setUsers(value);
-        getUsersName(value);
     }
 
-    const getUsersName = (users) => {
-        //debugger;
-        //console.log(users);
+    const userFilter = (value) => {
+        for(let i = 0; i < users.length; i++){
+            if(users[i].username === value ){
+                setUserInfo(users[i]);
+            }
+        }
     }
 
     const usersDataContext = {
         users,
-        getUsersValue
+        userInfo,
+        getUsersValue,
+        userFilter
     }
-
-    
 
     //Return Provider
     return(
